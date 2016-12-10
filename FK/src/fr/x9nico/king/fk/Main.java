@@ -18,6 +18,7 @@ import fr.x9nico.king.fk.game.GameState;
 import fr.x9nico.king.fk.listener.PlayerConnectListener;
 import fr.x9nico.king.fk.listener.PlayerDamageListener;
 import fr.x9nico.king.fk.listener.PlayerInteractListener;
+import fr.x9nico.king.fk.utils.KitUtils;
 import fr.x9nico.king.fk.utils.TitleUtils;
 
 /**
@@ -47,6 +48,7 @@ public class Main extends JavaPlugin implements Listener {
 		pm.registerEvents(new PlayerConnectListener(), this);
 		pm.registerEvents(new PlayerDamageListener(), this);
 		pm.registerEvents(new PlayerInteractListener(), this);
+		pm.registerEvents(new KitUtils(), this);
 		// Commands
 		this.getCommand("game").setExecutor(new GameCommand());
 		this.getCommand("hub").setExecutor(new HubCommand());
