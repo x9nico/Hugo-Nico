@@ -39,7 +39,7 @@ public class ScoreboardManager implements org.bukkit.scoreboard.ScoreboardManage
        
         objective = scoreboard.registerNewObjective(name, "dummy");
         objective = scoreboard.getObjective(name);
-        objective.setDisplayName("§eChaos");
+        objective.setDisplayName("§eFK");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
        
     }
