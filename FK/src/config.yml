@@ -1,12 +1,12 @@
 #Config file: Fallen Kingdom Remastered
 ##Configuration by KingRider and x9nico:
 bungee: false
-
-##Database for stats
-MySQL: false
-  user:
-  password:
-  host:
-  database:
+###DataBase SQL for save stats
+mysql:
+  enable: false
+  host: localhost
   port: 3306
-#Finish config file
+  database: datbase
+  user: root
+  pass: password
+#Finish Config File
