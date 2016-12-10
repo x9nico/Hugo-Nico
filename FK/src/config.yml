@@ -8,4 +8,5 @@ MySQL: false
   password:
   host:
   database:
+  port: 3306
 #Finish config file
