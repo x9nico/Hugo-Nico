@@ -1,0 +1,11 @@
+name: FallenKingdom
+version: 0.1
+authors: [x9nico,Erisium_Likaos]
+main: fr.x9nico.king.fr.Main
+description: Fallen Kingdom by x9nico and KingRider
+commands:
+  game:
+    description: Commande principal
+    permission: op
+  hub:
+    description: Hub command
