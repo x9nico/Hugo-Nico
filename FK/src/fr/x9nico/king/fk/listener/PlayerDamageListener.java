@@ -11,14 +11,13 @@ import fr.x9nico.king.fk.game.GameState;
 
 public class PlayerDamageListener implements Listener {
 	
-	//
 	@EventHandler
 	public void onDamage(EntityDamageEvent event) {
 		Player player = (Player) event.getEntity();
 		if (GameState.isState(GameState.LOBBY)) {
 			if (event.getCause() == DamageCause.FALL) {
 				event.setCancelled(true);
-				player.teleport(new Location(player.getWorld(), 26, 142, 34));
+				player.teleport(new Location(player.getWorld(), 77, 59, 71));
 				player.sendMessage("Vous ne pouvez pas sortir de la WaitingRoom");
 			}
 		}
