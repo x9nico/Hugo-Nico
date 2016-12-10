@@ -1,4 +1,11 @@
 #Config file: Fallen Kingdom Remastered
 ##Configuration by KingRider and x9nico:
-bungee:
-  - server:
+bungee: false
+
+##Database for stats
+MySQL: false
+  user:
+  password:
+  host:
+  database:
+#Finish config file
