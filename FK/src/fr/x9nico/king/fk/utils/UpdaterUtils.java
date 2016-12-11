@@ -13,9 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-/**
- * @author inventivetalent ( https://inventivetalent.org/ )
- */
+
 public class UpdaterUtils extends Thread {
     private final Plugin plugin;
     private final int id;
@@ -38,7 +36,7 @@ public class UpdaterUtils extends Thread {
             this.id = resourceID;
             this.log = log;
             this.url = new URL("https://api.inventivetalent.org/spigot/resource-simple/" + resourceID);
-            File configDir = new File(plugin.getDataFolder().getParentFile(), "SpigotUpdates");
+            File configDir = new File(plugin.getDataFolder().getParentFile(), "FallenKingdom");
             File config = new File(configDir, "config.yml");
             YamlConfiguration yamlConfig = new YamlConfiguration();
             if(!configDir.exists()) {
@@ -47,7 +45,7 @@ public class UpdaterUtils extends Thread {
  
             if(!config.exists()) {
                 config.createNewFile();
-                yamlConfig.options().header("Configuration for the SpigotUpdate system\nit will inform you about new versions of all plugins which use this updater\n\'enabled\' specifies whether the system is enabled (affects all plugins)");
+                yamlConfig.options().header("Configuration for the update check system will inform you about new versions of all plugins which use this updater\n\'enabled\' specifies whether the system is enabled (affects the plugin)");
                 yamlConfig.options().copyDefaults(true);
                 yamlConfig.addDefault("enabled", Boolean.valueOf(true));
                 yamlConfig.save(config);
@@ -72,7 +70,7 @@ public class UpdaterUtils extends Thread {
         if(this.plugin.isEnabled()) {
             if(this.enabled) {
                 if(this.log) {
-                    this.plugin.getLogger().info("[Updater] Searching for updates.");
+                    this.plugin.getLogger().info("[FallenKingdom] Searching for updates.");
                 }
  
                 HttpURLConnection connection = null;
@@ -107,25 +105,25 @@ public class UpdaterUtils extends Thread {
  
                     if(currentVersion == null) {
                         if(this.log) {
-                            this.plugin.getLogger().warning("[Updater] Invalid response received.");
-                            this.plugin.getLogger().warning("[updater] Either the author of this plugin has configured the updater wrong, or the API is experiencing some issues.");
+                            this.plugin.getLogger().warning("[FallenKingdom] Invalid response received.");
+                            this.plugin.getLogger().warning("[FallenKingdom] Either the author of this plugin has configured the updater wrong, or the API is experiencing some issues.");
                         }
  
                         return;
                     }
  
                     if(!currentVersion.equals(this.plugin.getDescription().getVersion())) {
-                        this.plugin.getLogger().info("[Updater] Found new version: " + currentVersion + "! (Your version is " + this.plugin.getDescription().getVersion() + ")");
-                        this.plugin.getLogger().info("[Updater] Download here: http://www.spigotmc.org/resources/" + this.id);
+                        this.plugin.getLogger().info("[FallenKingdom] Found new version: " + currentVersion + "! (Your version is " + this.plugin.getDescription().getVersion() + ")");
+                        this.plugin.getLogger().info("[FallenKingdom] Download here: http://www.spigotmc.org/resources/" + this.id);
                     } else if(this.log) {
-                        this.plugin.getLogger().info("[Updater] Plugin is up-to-date.");
+                        this.plugin.getLogger().info("[FallenKingdom] Plugin is up-to-date.");
                     }
                 } catch (IOException var10) {
                     if(this.log) {
                         if(connection != null) {
                             try {
                                 int e1 = connection.getResponseCode();
-                                this.plugin.getLogger().warning("[Updater] API connection returned response code " + e1);
+                                this.plugin.getLogger().warning("[FallenKingdom] API connection returned response code " + e1);
                             } catch (IOException var8) {
                                 ;
                             }
