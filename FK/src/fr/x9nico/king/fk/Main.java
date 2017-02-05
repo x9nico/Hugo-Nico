@@ -27,10 +27,6 @@ import fr.x9nico.king.fk.listener.PlayerInteractListener;
 import fr.x9nico.king.fk.utils.KitUtils;
 import fr.x9nico.king.fk.utils.TitleUtils;
 
-/**
- * Copyright (C)
- * @author KingRider
- */
 public class Main extends JavaPlugin implements Listener {
 	
 	// Variables
@@ -56,8 +52,8 @@ public class Main extends JavaPlugin implements Listener {
 			pm.registerEvents(new KitUtils(), this);
 			pm.registerEvents(this, this);
 			// Commands
-			this.getCommand("game").setExecutor(new GameCommand());
-			this.getCommand("hub").setExecutor(new HubCommand());
+			getCommand("game").setExecutor(new GameCommand());
+			getCommand("hub").setExecutor(new HubCommand());
 			
 		} catch(Exception e) {
 			Bukkit.getConsoleSender().sendMessage(ChatColor.RED+"Erreur contactez immédiatement: " + this.getDescription().getAuthors());
