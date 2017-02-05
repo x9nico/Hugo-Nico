@@ -29,10 +29,9 @@ public class PlayerConnectListener implements Listener {
 		int online = Bukkit.getOnlinePlayers().size();
 		int max = Bukkit.getMaxPlayers();
 		player.getInventory().clear();
-		
 		player.setGameMode(GameMode.SURVIVAL);
 		// Message de join
-		event.setJoinMessage("");
+		event.setJoinMessage(null);
 		TitleUtils.sendActionBar(player, "§e" + player.getName() + " §7a rejoint la partie §a(" + online + "/" + max + ")");
 		player.playSound(player.getLocation(), Sound.NOTE_PLING, 100, 1);
 		
