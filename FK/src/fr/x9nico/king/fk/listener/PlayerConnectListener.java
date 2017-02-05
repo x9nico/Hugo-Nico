@@ -25,7 +25,7 @@ public class PlayerConnectListener implements Listener {
 	@EventHandler
 	public void onPlayerConnect(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
-		event.setJoinMessage("");
+		event.setJoinMessage(null);
 		int online = Bukkit.getOnlinePlayers().size();
 		int max = Bukkit.getMaxPlayers();
 		player.getInventory().clear();
@@ -43,6 +43,7 @@ public class PlayerConnectListener implements Listener {
 		// Joueur qui n'était pas la au lobby
 		if(!GameState.isState(GameState.LOBBY)){
 			player.setGameMode(GameMode.SPECTATOR);
+			player.sendMessage("§cLa partie a déjà commencée.§eVous êtes en mode spectateur.");
 			return;
 		}
 			
