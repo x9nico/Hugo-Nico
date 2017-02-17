@@ -3,6 +3,7 @@ package fr.x9nico.king.fk.listener;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -16,7 +17,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
 import fr.x9nico.king.fk.Main;
 import fr.x9nico.king.fk.game.GameState;
 import fr.x9nico.king.fk.manager.GameManager;
@@ -30,11 +30,11 @@ public class PlayerConnectListener implements Listener {
 	@EventHandler
 	public void onPlayerConnect(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
-		event.setJoinMessage(null);
 		int online = Bukkit.getOnlinePlayers().size();
 		int max = Bukkit.getMaxPlayers();
 		player.getInventory().clear();
 		player.setGameMode(GameMode.SURVIVAL);
+		player.setLevel(121);
 		// Message de join
 		event.setJoinMessage(null);
 		TitleUtils.sendActionBar(player, "§e" + player.getName() + " §7a rejoint la partie §a(" + online + "/" + max + ")");
@@ -55,10 +55,20 @@ public class PlayerConnectListener implements Listener {
 		// PlayerList add
 		Main.playerList.add(player);
 		
+		// SB Refresh
+		for (Entry<Player, ScoreboardSign> boards : board.entrySet()) {
+			boards.getValue().setLine(1, "§6Joueurs: §a" + Bukkit.getOnlinePlayers().size()+"");
+		}
+		
 		//SB
 		ScoreboardSign sb = new ScoreboardSign(player, "§e§lFallenKingdoms");
 		sb.create();
 		sb.setLine(0, "§e");
+		sb.setLine(1, "§6Joueurs: §a" + Bukkit.getOnlinePlayers().size()+"");
+		sb.setLine(3, "§e");
+		sb.setLine(4, "§6Temps: §e" + new GameManager().time+"");
+		sb.setLine(5, "§e");
+		sb.setLine(6, "§eplay.epicube.fr");
 		board.put(player, sb);
 		
 		new GameManager().onStartTimer(player);

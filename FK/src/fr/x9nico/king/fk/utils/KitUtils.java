@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
@@ -28,6 +29,8 @@ public class KitUtils implements Listener {
         Player p = e.getPlayer();
         ItemStack i = e.getItem();
        
+        if (e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK)return;
+        
         if(i != null && i.getType() != null && i.getType() == Material.NAME_TAG){
             p.openInventory(inv);
         }

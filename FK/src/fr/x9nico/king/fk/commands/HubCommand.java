@@ -5,12 +5,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
 import fr.x9nico.king.fk.Main;
-import net.md_5.bungee.api.ChatColor;
 
 public class HubCommand implements CommandExecutor {
 
@@ -32,7 +33,9 @@ public class HubCommand implements CommandExecutor {
 				out.writeUTF("lobby");
 				player.sendPluginMessage(Bukkit.getPluginManager().getPlugin("FallenKingdom"), "BungeeCord", out.toByteArray());
 			} catch (Exception e) {
-				Bukkit.getConsoleSender().sendMessage(ChatColor.RED+"Erreur...");
+				player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 3, 10));
+				player.sendMessage("§cAucun serveur n'est connecté !");
+				
 			}
 			
 		}

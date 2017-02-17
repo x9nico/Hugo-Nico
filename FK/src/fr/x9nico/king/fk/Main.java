@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
@@ -85,12 +86,24 @@ public class Main extends JavaPlugin implements Listener {
 		int online = Bukkit.getOnlinePlayers().size();
 		int max = Bukkit.getMaxPlayers();
 		TitleUtils.sendActionBar(player, "§e" + player.getName() + " §7a quitté la partie §a(" + online + "/" + max + ")");
+		
+		if (online < 2) {
+			Bukkit.getScheduler().cancelAllTasks();
+		}
 	}
 	
 	@EventHandler
 	public void onWeather(WeatherChangeEvent event) {
 		event.setCancelled(true);
 	}
+	
+	@EventHandler
+    public void on(final InventoryClickEvent event) {
+        if (event.getWhoClicked() instanceof Player)
+        {
+        	event.setCancelled(true);
+        }
+    }
 	
 	@EventHandler
 	public void onBreakBlock(BlockBreakEvent event) {

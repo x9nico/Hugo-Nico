@@ -12,8 +12,6 @@ import org.bukkit.potion.PotionEffectType;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
-import net.md_5.bungee.api.ChatColor;
-
 public class PlayerInteractListener implements Listener {
 	
 	@EventHandler
@@ -30,9 +28,8 @@ public class PlayerInteractListener implements Listener {
 				out.writeUTF("lobby");
 				player.sendPluginMessage(Bukkit.getPluginManager().getPlugin("FallenKingdom"), "BungeeCord", out.toByteArray());
 			} catch (Exception e) {
-				player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 3, 2));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 3, 10));
 				player.sendMessage("§cAucun serveur n'est connecté !");
-				Bukkit.getConsoleSender().sendMessage(ChatColor.RED+"Erreur...");
 			}
 		}
 	}
