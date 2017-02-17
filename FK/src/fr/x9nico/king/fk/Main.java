@@ -36,8 +36,6 @@ public class Main extends JavaPlugin implements Listener {
 	public HashMap<Player, Kits> kits = new HashMap<>();
 	public static HashMap<Player, Integer> kill = new HashMap<Player, Integer>();
 	
-	Player player;
-	
 	@Override
 	public void onEnable() {
 		try {
@@ -54,6 +52,10 @@ public class Main extends JavaPlugin implements Listener {
 			// Commands
 			getCommand("game").setExecutor(new GameCommand());
 			getCommand("hub").setExecutor(new HubCommand());
+			
+			// Configuration
+			this.getConfig().options().copyDefaults(true);
+			this.saveConfig();
 			
 		} catch(Exception e) {
 			Bukkit.getConsoleSender().sendMessage(ChatColor.RED+"Erreur contactez immédiatement: " + this.getDescription().getAuthors());

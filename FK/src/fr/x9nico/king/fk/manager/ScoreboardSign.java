@@ -204,6 +204,7 @@ public class ScoreboardSign {
 	 * code before doing so. Use these methods at your own risk.
 	 */
 	public class VirtualTeam {
+		
 		private final String name;
 		private String prefix;
 		private String suffix;

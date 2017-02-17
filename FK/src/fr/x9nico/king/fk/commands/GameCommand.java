@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.x9nico.king.fk.Main;
+import fr.x9nico.king.fk.manager.GameManager;
+import fr.x9nico.king.fk.utils.LocationUtils;
 
 public class GameCommand implements CommandExecutor {
 	
@@ -26,7 +28,30 @@ public class GameCommand implements CommandExecutor {
 			
 		}
 		
+		if (args.length > 0) {
+			String subCommand = args[0];
+			if (subCommand.equalsIgnoreCase("start")) start(player);
+			else if (subCommand.equalsIgnoreCase("addspawn")) spawn(player);
+			else if (subCommand.equalsIgnoreCase("removeSpawn")) removeSpawn(player);
+			else if(subCommand.equalsIgnoreCase("addSpawnSpec")) spawnSpec(player);
+		}
 		return true;
+	}
+	
+	public void spawnSpec(Player player) {
+		new LocationUtils(player.getLocation());
+	}
+
+	public void removeSpawn(Player player) {
+		new LocationUtils(player.getLocation());
+	}
+
+	public void spawn(Player player) {
+		new LocationUtils(player.getLocation());
+	}
+
+	public void start(Player player) {
+		new GameManager().onTimerStart(player);
 	}
 
 }
