@@ -1,6 +1,8 @@
 package fr.x9nico.king.fk.listener;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -17,10 +19,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.x9nico.king.fk.Main;
 import fr.x9nico.king.fk.game.GameState;
-import fr.x9nico.king.fk.object.ScoreboardRunnable;
+import fr.x9nico.king.fk.manager.ScoreboardSign;
 import fr.x9nico.king.fk.utils.TitleUtils;
 
 public class PlayerConnectListener implements Listener {
+	
+	public Map<Player, ScoreboardSign> board = new HashMap<>();
 	
 	@EventHandler
 	public void onPlayerConnect(PlayerJoinEvent event) {
@@ -49,9 +53,12 @@ public class PlayerConnectListener implements Listener {
 			
 		// PlayerList add
 		Main.playerList.add(player);
-				
-		// Scoreboard set quand un joueur se connecte
-		new ScoreboardRunnable().runTaskTimer(Main.instance, 1L, 20L);
+		
+		//SB
+		ScoreboardSign sb = new ScoreboardSign(player, "§e§lFallenKingdoms");
+		sb.create();
+		sb.setLine(0, "§e");
+		board.put(player, sb);
 		
 		player.teleport(new Location(player.getWorld(), 77, 59, 71));
 		
