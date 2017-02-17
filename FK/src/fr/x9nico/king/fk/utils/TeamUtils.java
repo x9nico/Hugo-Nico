@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 
 public class TeamUtils {
 	
+	//TEAM
+	
 	public static ArrayList<Player> teamred = new ArrayList<>();
 	public static ArrayList<Player> teamblue = new ArrayList<>();
 	public static ArrayList<Player> teamgreen = new ArrayList<>();
@@ -26,7 +28,6 @@ public class TeamUtils {
 	
 	public static ArrayList<Player> getRedPlayer(){
 		return teamred;
-		
 	}
 	
 	public static ArrayList<Player> getBluePlayer(){
