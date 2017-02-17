@@ -1,5 +1,9 @@
 package fr.x9nico.king.fk.manager;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -12,6 +16,8 @@ import fr.x9nico.king.fk.utils.TitleUtils;
  * @author KingRider
  */
 public class GameManager {
+	
+	public Map<Player, ScoreboardSign> board = new HashMap<>();
 	
 	// Variables
 	public int time = 121;
@@ -37,12 +43,18 @@ public class GameManager {
 					
 					if (time == 121 || time == 120 || time == 60 || time == 40 || time == 30 || time == 20 || time == 10 || time == 5 || time == 4 || time == 2 || time == 1) {
 						for (Player pls : Bukkit.getOnlinePlayers()) {
+							pls.setLevel(time);
 							TitleUtils.sendActionBar(pls, "§6La partie commence dans §e" + time + " §6seconde(s).");
 							player.playSound(player.getLocation(), Sound.NOTE_BASS_DRUM, 100, 1);
+						}
+						
+						for(Entry<Player, ScoreboardSign> boards : board.entrySet()){
+							boards.getValue().setLine(0, "§cTimer§f: §e" + time);
 						}
 					}
 					
 					if (time == 0) {
+						player.getInventory().clear();
 						Bukkit.getScheduler().cancelTask(task);
 					}
 				}
@@ -60,12 +72,17 @@ public class GameManager {
 					
 					if (start == 11 || start == 10 || start == 5 || start == 4 || start == 3 || start == 2 || start == 1) {
 						for (Player pls : Bukkit.getOnlinePlayers()) {
+							pls.setLevel(time);
 							TitleUtils.sendActionBar(pls, "§6La partie commence dans §e" + start + " §6seconde(s).");
 							player.playSound(player.getLocation(), Sound.NOTE_BASS_DRUM, 100, 1);
+						}
+						for(Entry<Player, ScoreboardSign> boards : board.entrySet()){
+							boards.getValue().setLine(0, "");
 						}
 					}
 					
 					if (start == 0) {
+						player.getInventory().clear();
 						Bukkit.getScheduler().cancelTask(task);
 					}
 				}

@@ -19,6 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.x9nico.king.fk.Main;
 import fr.x9nico.king.fk.game.GameState;
+import fr.x9nico.king.fk.manager.GameManager;
 import fr.x9nico.king.fk.manager.ScoreboardSign;
 import fr.x9nico.king.fk.utils.TitleUtils;
 
@@ -59,6 +60,8 @@ public class PlayerConnectListener implements Listener {
 		sb.create();
 		sb.setLine(0, "§e");
 		board.put(player, sb);
+		
+		new GameManager().onStartTimer(player);
 		
 		player.teleport(new Location(player.getWorld(), 77, 59, 71));
 		
